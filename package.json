@@ -25,7 +25,7 @@
     "eject": "react-scripts eject"
   },
   "prettier": {
-    "semi": false,
+    "semi": true,
     "trailingComma": "all"
   },
   "eslintConfig": {
@@ -45,5 +45,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.56.2",
+    "sass-loader": "^13.2.0"
   }
 }
