@@ -1,5 +1,11 @@
-.home-video {
+.home-container {
   width: 100%;
   height: 100vh;
+  object-fit: cover;
+}
+
+.home-video {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }

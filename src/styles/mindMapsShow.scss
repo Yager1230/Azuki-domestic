@@ -1,0 +1,11 @@
+.blocks-container {
+  height: 614px;
+  width: 100%;
+  position: relative;
+  transition: 1s;
+
+  .mind-block {
+    position: absolute;
+    background-color: rgb(235,231,224);
+  }
+}

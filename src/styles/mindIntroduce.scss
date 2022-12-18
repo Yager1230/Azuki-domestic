@@ -1,0 +1,41 @@
+
+
+.container {
+  line-height: 1;
+  display: flex;
+  align-items: flex-end;
+
+  .word-part {
+  padding-bottom: 24px;
+  width: 408px;
+
+    .title-container {
+      font-size: 3.75rem;
+      padding-bottom: 1rem;
+  
+      .slash {
+        font-weight: 800;
+        padding-left: 1rem;
+        opacity: 0.1;
+      }
+    }
+  
+    .description-container {
+      font-weight: 300;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
+
+  .img-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    .summarize-image {
+      max-width: 24rem;
+      height: auto;
+      transform: translateX(1rem);
+    }
+  }
+}

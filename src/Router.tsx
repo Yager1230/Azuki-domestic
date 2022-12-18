@@ -7,15 +7,18 @@ import {
 
 import Mindmap from "./pages/Mind-map";
 import Home from "./pages/Home";
+import Container from "./components/Container";
 
 const AppRouter = () => {
   return (
     <Router>
-      <Switch>
-        <Route path="/map" component={Mindmap} />
-        <Route path="/" component={Home} />
-        <Redirect to="/" />
-      </Switch>
+      <Container>
+        <Switch>
+          <Route path="/mind-map" component={Mindmap} />
+          <Route path="/" component={Home} />
+          <Redirect to="/" />
+        </Switch>
+      </Container>
     </Router>
   );
 };
