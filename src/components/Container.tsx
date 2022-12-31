@@ -4,10 +4,13 @@ import { NavLink } from "react-router-dom";
 import { getMenuConfig } from "../consts/menu-config";
 import MyMenu from "./MyMenu";
 import "../styles/container.scss";
+import titleSrc from "../static/img/title.png";
+import titleClickSrc from "../static/img/titleAfterClick.png";
 
 export default function Container(props) {
   const { children } = props;
   const [menuConfig, setMenuConfig] = useState(getMenuConfig());
+  const [titleImg, setTitleImg] = useState(titleSrc);
   return (
     <div className="out-container">
       {children}
@@ -26,7 +29,13 @@ export default function Container(props) {
             <img
               className="azuki-img"
               alt=""
-              src="https://www.azuki.com/Azuki%20Logo%20White.svg"
+              onMouseEnter={() => {
+                setTitleImg(titleClickSrc);
+              }}
+              onMouseLeave={() => {
+                setTitleImg(titleSrc);
+              }}
+              src={titleImg}
             />
           </NavLink>
           <MyMenu

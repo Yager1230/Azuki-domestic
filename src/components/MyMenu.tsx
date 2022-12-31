@@ -7,6 +7,8 @@ export interface MenuConfig {
   target: string;
   openNewWin?: boolean;
   isChosen?: boolean;
+  imgSrc?: string;
+  imgHeightConfig?: string;
 }
 
 const normalClass = "item-container";
@@ -29,7 +31,15 @@ export default function MyMenu(props) {
                     window.open(item.target);
                   }}
                 >
-                  {item.label}
+                  <img
+                    style={
+                      item.imgHeightConfig
+                        ? { height: item.imgHeightConfig }
+                        : {}
+                    }
+                    src={item.imgSrc}
+                    alt=""
+                  />
                 </a>
               ) : (
                 <NavLink
