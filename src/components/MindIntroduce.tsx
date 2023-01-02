@@ -1,5 +1,6 @@
-import { I18nEnum } from "consts/i18n";
 import "../styles/mindIntroduce.scss";
+import { I18nEnum } from "consts/i18n";
+import girlSrc from "../static/img/introduce-girl.png";
 
 export default function MindIntroduce() {
   return (
@@ -12,11 +13,7 @@ export default function MindIntroduce() {
         <div className="description-container">{I18nEnum.MIND_MAP_DES}</div>
       </div>
       <div className="img-container">
-        <img
-          className="summarize-image"
-          src="https://www.azuki.com/gmanifesto2.png"
-          alt=""
-        ></img>
+        <img className="summarize-image" src={girlSrc} alt=""></img>
       </div>
     </div>
   );
