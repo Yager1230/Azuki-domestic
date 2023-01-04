@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 import "../styles/menu.scss";
 
@@ -15,13 +16,15 @@ const normalClass = "item-container";
 const activeClass = "item-container chosen-one";
 
 export default function MyMenu(props) {
-  const menuConfig: MenuConfig[] = props.menuConfig;
-  const { updateMenu } = props;
+  const location = useLocation();
+  const { menuConfig } = props;
+
   return (
     <div>
       <div className="menu-container">
         {menuConfig.map((item: MenuConfig) => {
-          const containerClass = item.isChosen ? activeClass : normalClass;
+          const containerClass =
+            item.target === location.pathname ? activeClass : normalClass;
           return (
             <div className={containerClass} key={item.label}>
               {item.openNewWin ? (
@@ -42,19 +45,7 @@ export default function MyMenu(props) {
                   />
                 </a>
               ) : (
-                <NavLink
-                  onClick={() => {
-                    const newMenuConfig = menuConfig.map((menuChild) => {
-                      return {
-                        ...menuChild,
-                        isChosen: menuChild.label === item.label,
-                      };
-                    });
-                    updateMenu(newMenuConfig);
-                  }}
-                  className="menu-item"
-                  to={item.target}
-                >
+                <NavLink className="menu-item" to={item.target}>
                   {item.label}
                 </NavLink>
               )}

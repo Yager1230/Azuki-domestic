@@ -16,16 +16,7 @@ export default function Container(props) {
       {children}
       <div className="top-menu">
         <div className="flex-box menu-container">
-          <NavLink
-            onClick={() => {
-              const newConfig = menuConfig.map((item) => ({
-                ...item,
-                isChosen: false,
-              }));
-              setMenuConfig(newConfig);
-            }}
-            to="/"
-          >
+          <NavLink to="/">
             <img
               className="azuki-img"
               alt=""
@@ -38,12 +29,7 @@ export default function Container(props) {
               src={titleImg}
             />
           </NavLink>
-          <MyMenu
-            menuConfig={menuConfig}
-            updateMenu={(value) => {
-              setMenuConfig(value);
-            }}
-          ></MyMenu>
+          <MyMenu menuConfig={menuConfig}></MyMenu>
         </div>
       </div>
     </div>

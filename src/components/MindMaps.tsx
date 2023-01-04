@@ -2,9 +2,14 @@ import { useEffect, useRef, useState } from "react";
 
 import "../styles/mindMapsShow.scss";
 import { blockConfig } from "../consts/mind-map-config";
+import MindMapDetail from "./MindMapDetail";
 
 export default function MindMaps() {
   const blockContainer = useRef<HTMLDivElement>(null);
+  const [currentShowMap, setCurrentShowMap] = useState<HTMLDivElement>(null);
+  const [detailFlag, setDetailFlag] = useState<boolean>(false);
+  const [showTitle, setShowTitle] = useState<boolean>(true);
+  const [showCancelIcon, setShowCancelIcon] = useState<boolean>(false);
   const [blockWidth, setBlockWidth] = useState<number>(0);
   const [arrowClassName, setArrowClassName] = useState<string[]>(
     new Array(7).fill("arrow-hide arrow"),
@@ -39,11 +44,39 @@ export default function MindMaps() {
 
   return (
     <div ref={blockContainer} className="blocks-container">
+      {showCancelIcon && (
+        <div
+          className="expand-cancel-icon"
+          onClick={() => {
+            setShowTitle(true);
+            setShowCancelIcon(false);
+            currentShowMap.className = "mind-block";
+          }}
+        >
+          ←
+        </div>
+      )}
       {blockConfig.map(
         ({ leftConfficient, lastOne, title, ...rest }, index) => (
           <div
             onMouseEnter={showArrow.bind(null, index)}
             onMouseLeave={hideArrow.bind(null, index)}
+            onClick={(e) => {
+              if (!title || detailFlag) {
+                return;
+              }
+              setDetailFlag(true);
+              const modal = e.currentTarget as HTMLDivElement;
+              modal.className = "mind-block expand-detail";
+              setShowTitle(false);
+              setTimeout(() => {
+                setShowCancelIcon(true);
+              }, 500);
+              setTimeout(() => {
+                setDetailFlag(false);
+              }, 1000);
+              setCurrentShowMap(modal);
+            }}
             key={index}
             className="mind-block"
             style={{
@@ -52,15 +85,24 @@ export default function MindMaps() {
               left: `${leftConfficient * blockWidth + leftConfficient * 5}px`,
             }}
           >
-            <div className="title-container">
-              <p className="title-num">{index + 1}</p>
-              <p className="title-content">
-                <span>{title}</span>
-                <span className={title ? arrowClassName[index] : "arrow-hide"}>
-                  →
-                </span>
-              </p>
-            </div>
+            {showTitle && (
+              <div className="title-container">
+                <p className="title-num">{index + 1}</p>
+                <p className="title-content">
+                  <span>{title}</span>
+                  <span
+                    className={title ? arrowClassName[index] : "arrow-hide"}
+                  >
+                    →
+                  </span>
+                </p>
+              </div>
+            )}
+            {showCancelIcon && (
+              <div className="detail-container">
+                <MindMapDetail></MindMapDetail>
+              </div>
+            )}
           </div>
         ),
       )}
