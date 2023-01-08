@@ -5,8 +5,7 @@ export enum I18nEnum {
   TENCENT_QQ = 'QQ',
   RED_BOOK = '小红书',
   KOOK = 'KOOK',
-  MIND_MAP_TITLE_HOPE = '愿景',
-  MIND_MAP_TITLE_VALUE = '价值',
+  MIND_MAP_TITLE_HOPE = '愿景与价值',
   MIND_MAP_TITLE_COMMUNITY_WELFARE = '社群福利',
   MIND_MAP_TITLE_STORY = '故事',
 };

@@ -9,7 +9,7 @@ import titleClickSrc from "../static/img/titleAfterClick.png";
 
 export default function Container(props) {
   const { children } = props;
-  const [menuConfig, setMenuConfig] = useState(getMenuConfig());
+  const menuConfig = getMenuConfig();
   const [titleImg, setTitleImg] = useState(titleSrc);
   return (
     <div className="out-container">

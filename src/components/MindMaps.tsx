@@ -14,6 +14,7 @@ export default function MindMaps() {
   const [arrowClassName, setArrowClassName] = useState<string[]>(
     new Array(7).fill("arrow-hide arrow"),
   );
+  const [componentName, setComponentName] = useState(null);
   const updateSize = () => {
     if (blockContainer.current) {
       const containerWidth = blockContainer.current.clientWidth;
@@ -65,6 +66,8 @@ export default function MindMaps() {
               if (!title || detailFlag) {
                 return;
               }
+              const numMap = ["One", "Two", "Three", "Four"];
+              setComponentName(index);
               setDetailFlag(true);
               const modal = e.currentTarget as HTMLDivElement;
               modal.className = "mind-block expand-detail";
@@ -87,7 +90,7 @@ export default function MindMaps() {
           >
             {showTitle && (
               <div className="title-container">
-                <p className="title-num">{index + 1}</p>
+                <p className="title-num">{`0${index + 1}`}</p>
                 <p className="title-content">
                   <span>{title}</span>
                   <span
@@ -98,9 +101,9 @@ export default function MindMaps() {
                 </p>
               </div>
             )}
-            {showCancelIcon && (
+            {showCancelIcon && componentName === index && (
               <div className="detail-container">
-                <MindMapDetail></MindMapDetail>
+                <MindMapDetail componentName={componentName}></MindMapDetail>
               </div>
             )}
           </div>
