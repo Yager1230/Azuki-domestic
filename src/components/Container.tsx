@@ -15,7 +15,7 @@ export default function Container(props) {
     <div className="out-container">
       {children}
       <div className="top-menu">
-        <div className="flex-box menu-container">
+        <div className="flex-box out-menu-container">
           <NavLink to="/">
             <img
               className="azuki-img"
