@@ -24,15 +24,21 @@ export default function MindMaps() {
   };
 
   const showArrow = (index) => {
-    const arr = arrowClassName;
-    arr[index] = "arrow-show arrow";
-    setArrowClassName([...arr]);
+    arrowClassName[index] = "arrow-show arrow";
+    setArrowClassName([...arrowClassName]);
   };
 
   const hideArrow = (index) => {
-    const arr = arrowClassName;
-    arr[index] = "arrow-hide arrow";
-    setArrowClassName([...arr]);
+    arrowClassName[index] = "arrow-hide arrow";
+    setArrowClassName([...arrowClassName]);
+  };
+
+  const hoverBlock = (index) => {
+    showArrow(index);
+  };
+
+  const leaveBlock = (index) => {
+    hideArrow(index);
   };
 
   useEffect(() => {
@@ -58,15 +64,14 @@ export default function MindMaps() {
         </div>
       )}
       {blockConfig.map(
-        ({ leftConfficient, lastOne, title, ...rest }, index) => (
+        ({ leftConfficient, lastOne, title, imgSrc, ...rest }, index) => (
           <div
-            onMouseEnter={showArrow.bind(null, index)}
-            onMouseLeave={hideArrow.bind(null, index)}
+            onMouseEnter={hoverBlock.bind(null, index)}
+            onMouseLeave={leaveBlock.bind(null, index)}
             onClick={(e) => {
               if (!title || detailFlag) {
                 return;
               }
-              const numMap = ["One", "Two", "Three", "Four"];
               setComponentName(index);
               setDetailFlag(true);
               const modal = e.currentTarget as HTMLDivElement;
@@ -99,11 +104,22 @@ export default function MindMaps() {
                     →
                   </span>
                 </p>
+                <img
+                  style={{
+                    opacity: arrowClassName[index].includes("arrow-hide")
+                      ? 0.3
+                      : 0.7,
+                  }}
+                  className="block-img arrow"
+                  src={imgSrc}
+                  alt=""
+                />
               </div>
             )}
             {showCancelIcon && componentName === index && (
               <div className="detail-container">
                 <MindMapDetail componentName={componentName}></MindMapDetail>
+                <img className="detail-img" src={imgSrc} alt="" />
               </div>
             )}
           </div>

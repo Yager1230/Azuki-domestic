@@ -57,9 +57,6 @@
         display: flex;
         height: 28px;
 
-        .arrow {
-          transition: 0.3s;
-        }
         .arrow-show {
           transform: translateX(0.25rem);
           opacity: 1;
@@ -67,6 +64,17 @@
         .arrow-hide {
           opacity: 0;
         }
+      }
+
+      .arrow {
+        transition: 0.3s;
+      }
+
+      .block-img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 200px;
       }
     }
 
@@ -77,6 +85,15 @@
       display: flex;
       align-items: center;
       transition: 2s;
+      position: relative;
+
+      .detail-img {
+        height: 500px;
+        position: absolute;
+        opacity: 0.7;
+        right: 250px;
+        bottom: 0;
+      }
     }
   }
 }

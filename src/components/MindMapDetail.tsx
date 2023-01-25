@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react from "react";
 
 import "../styles/mind-map-detail/index.scss";
 
@@ -6,12 +6,11 @@ import "../styles/mind-map-detail/index.scss";
 import MapOne from "../components/min-map-detail/MapOne";
 import MapTwo from "../components/min-map-detail/MapTwo";
 import MapThree from "../components/min-map-detail/MapThree";
-import MapFour from "../components/min-map-detail/MapFour";
 
-const componentMap = [MapOne, MapTwo, MapThree, MapFour];
+const componentMap = [MapOne, MapTwo, MapThree];
 
 export default function MindMapDetail(props) {
-  const { componentName } = props;
+  const { componentName, imgSrc } = props;
   const renderComponent = react.createElement(componentMap[componentName]);
   return <div>{renderComponent}</div>;
 }
